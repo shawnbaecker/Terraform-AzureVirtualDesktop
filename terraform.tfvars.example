@@ -1,0 +1,20 @@
+# Copy this file to terraform.tfvars and fill in your values.
+# terraform.tfvars is gitignored so secrets stay out of the repo.
+
+prefix      = "bkr"
+environment = "lab"
+location    = "eastus"
+
+session_host_count   = 2
+session_host_vm_size = "Standard_D2s_v5"  # use Standard_B2ms to halve the cost
+
+admin_username = "bkradmin"
+# admin_password is intentionally NOT set here.
+# Set it via environment variable before running terraform:
+#   PowerShell: $env:TF_VAR_admin_password = "Your-Strong-P@ssw0rd-Here!"
+
+# Get your object ID from Azure portal:
+# Microsoft Entra ID > Users > click your user > copy Object ID
+avd_user_object_ids = [
+  "00000000-0000-0000-0000-000000000000",
+]
