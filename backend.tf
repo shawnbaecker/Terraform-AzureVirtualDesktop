@@ -9,9 +9,9 @@
 
 terraform {
   backend "azurerm" {
-    resource_group_name  = "rg-bkr-tfstate"        # <-- change if yours differs
-    storage_account_name = "stbkrtfstate"          # <-- CHANGE ME to your actual SA name
+    resource_group_name  = "bkr-lab-az-rg-tfstate"        # <-- change if yours differs
+    storage_account_name = "bkrlabazsttfstate"          # <-- CHANGE ME to your actual SA name
     container_name       = "tfstate"
-    key                  = "avd-lab.tfstate"
+    key                  = "avd/terraform.tfstate"
   }
 }

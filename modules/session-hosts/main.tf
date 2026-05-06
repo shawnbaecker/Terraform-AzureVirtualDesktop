@@ -1,6 +1,4 @@
-data "azurerm_resource_group" "main" {
-  name = var.resource_group_name
-}
+data "azurerm_subscription" "current" {}
 
 ###############################
 # NICs — one per session host
@@ -130,7 +128,7 @@ resource "azurerm_virtual_machine_extension" "avd_dsc" {
 # hosts inherit it.
 resource "azurerm_role_assignment" "vm_user_login" {
   for_each             = toset(var.user_object_ids)
-  scope                = data.azurerm_resource_group.main.id
+  scope                = "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${var.resource_group_name}"
   role_definition_name = "Virtual Machine User Login"
   principal_id         = each.value
 }
